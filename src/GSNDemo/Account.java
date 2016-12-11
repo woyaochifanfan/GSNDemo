@@ -2,18 +2,19 @@ package GSNDemo;
 
 public class Account {
 
-	private int id;
+	private int userid;
 	private String password;
-	
-	public Account(int id, String password) {
-		this.id = id;
+	private Person person;
+	public Account(int userid, String password, Person person) {
+		this.userid = userid;
 		this.password = password;
+		this.person = person;
 	}
-	public int getId() {
-		return id;
+	public int getUserid() {
+		return userid;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	public String getPassword() {
 		return password;
@@ -21,6 +22,14 @@ public class Account {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public Person getPerson() {
+		return person;
+	}
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+
 	
 	
 }
