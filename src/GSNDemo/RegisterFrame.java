@@ -20,7 +20,7 @@ public class RegisterFrame extends JFrame{
 	private JLabel passwordLabel;
 	private JLabel pwcheckLabel;
 	public RegisterFrame(){
-		this.setTitle("娉ㄥ唽");
+		this.setTitle("注册");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(480, 320);
 		this.setLocationRelativeTo(null);
