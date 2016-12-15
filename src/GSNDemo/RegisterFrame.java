@@ -1,4 +1,4 @@
-package GSNDemo;
+﻿package GSNDemo;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ public class RegisterFrame extends JFrame{
 	private JLabel passwordLabel;
 	private JLabel pwcheckLabel;
 	public RegisterFrame(){
-		this.setTitle("注册");
+		this.setTitle("娉ㄥ唽");
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(480, 320);
 		this.setLocationRelativeTo(null);
@@ -34,8 +34,8 @@ public class RegisterFrame extends JFrame{
 		useridText = new JTextField();
 		passwordText = new JPasswordField();
 		pwcheckText = new JPasswordField();
-		useridLabel = new JLabel("请输入用户id(非0开头6位纯数字):");
-		passwordLabel = new JLabel("请输入密码(长度6~16位):");
+		useridLabel = new JLabel("请输入账号6位纯数字:");
+		passwordLabel = new JLabel("请输入密码6-16位:");
 		pwcheckLabel = new JLabel("请再次输入密码:");
 		regBtn.setBounds(180, 220, 120, 40);
 		regBtn.setFont(myFont);
@@ -49,7 +49,7 @@ public class RegisterFrame extends JFrame{
 		pwcheckLabel.setFont(myFont);
 		pwcheckText.setBounds(120, 180, 240, 20);
 		
-		
+		//12345
 		this.setLayout(null);
 		this.getContentPane().add(regBtn);
 		this.getContentPane().add(useridText);
@@ -74,18 +74,18 @@ public class RegisterFrame extends JFrame{
 					String pwcheck = new String(pwcheckText.getPassword());
 					if (pw.length() >=6 && pw.length()<=16){
 						if (pwcheck.equals(pw)){
-							JOptionPane.showMessageDialog(null, "注册成功！");
+							JOptionPane.showMessageDialog(null, "注册成功");
 							Account acc = new Account(Integer.parseInt(useridText.getText()),pw,new Person());
 							//add sth.
 							RegisterFrame.this.dispose();
 						}else{
-							JOptionPane.showMessageDialog(null, "密码不一致！");
+							JOptionPane.showMessageDialog(null, "两次密码输入不一致");
 						}
 					}else{
-						JOptionPane.showMessageDialog(null, "密码不合法！");
+						JOptionPane.showMessageDialog(null, "密码格式错误");
 					}
 				}else{
-					JOptionPane.showMessageDialog(null, "用户id不合法！");
+					JOptionPane.showMessageDialog(null, "账号格式错误");
 				}
 			}
 		}

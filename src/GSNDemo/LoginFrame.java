@@ -1,13 +1,15 @@
-package GSNDemo;
+﻿package GSNDemo;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -26,9 +28,19 @@ public class LoginFrame extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		createComps();
+		createBasic();
 		
 	}
-	
+	private void createBasic(){
+		ImageIcon img = new ImageIcon("1.jpg");		// 这是背景图片
+		JLabel imgLabel = new JLabel(img);		    // 将背景图放在标签里。			
+		imgLabel.setBounds(0,0,this.getWidth(),this.getHeight());
+		this.getLayeredPane().add(imgLabel,new	Integer(Integer.MIN_VALUE));
+		JPanel cp = (JPanel)this.getContentPane();			 
+		cp.setOpaque(false); 
+		
+		
+	}
 	private void createComps(){
 		Font myFont = new Font("微软雅黑",Font.PLAIN, 16);
 		regBtn = new JButton();
@@ -76,10 +88,13 @@ public class LoginFrame extends JFrame{
 				RegisterFrame regFrm = new RegisterFrame();
 				regFrm.setVisible(true);
 			}else if (e.getSource()==logBtn){
-				
+				MainInterFace mainInterFace = new MainInterFace();
+				mainInterFace.setVisible(true);
+				LoginFrame.this.dispose();
 			}
 			
 		}
 		
 	}
 }
+

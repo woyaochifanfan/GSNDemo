@@ -6,7 +6,6 @@ public class Test {
 		// TODO Auto-generated method stub
 		LoginFrame a = new LoginFrame();
 		a.setVisible(true);
-		
 	}
 
 }
