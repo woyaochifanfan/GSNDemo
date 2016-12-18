@@ -1,4 +1,5 @@
-﻿package GSNDemo;
+﻿
+package GSNDemo;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
@@ -9,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -82,15 +84,23 @@ public class LoginFrame extends JFrame{
 	
 	private class MyListener implements ActionListener{
 
-		@Override
+		
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource()==regBtn){
 				RegisterFrame regFrm = new RegisterFrame();
 				regFrm.setVisible(true);
 			}else if (e.getSource()==logBtn){
-				MainInterFace mainInterFace = new MainInterFace();
-				mainInterFace.setVisible(true);
-				LoginFrame.this.dispose();
+				if(useridText.getText().matches("[1-9]\\d{5}")){
+					String pw = new String(passwordText.getPassword());
+					if(pw.length() >=6 && pw.length()<=16){
+						MainInterFace mainInterFace = new MainInterFace();
+						mainInterFace.setVisible(true);
+						LoginFrame.this.dispose();
+					}else{JOptionPane.showMessageDialog(null, "密码格式错误");}
+					
+					
+				
+				}else{JOptionPane.showMessageDialog(null, "账号格式错误");}
 			}
 			
 		}
