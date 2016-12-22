@@ -81,6 +81,7 @@ public class LoginFrame extends JFrame{
 		regBtn.addActionListener(myListener);
 		logBtn.addActionListener(myListener);
 	}
+
 	
 	private class MyListener implements ActionListener{
 
@@ -89,18 +90,24 @@ public class LoginFrame extends JFrame{
 			if (e.getSource()==regBtn){
 				RegisterFrame regFrm = new RegisterFrame();
 				regFrm.setVisible(true);
+
 			}else if (e.getSource()==logBtn){
-				if(useridText.getText().matches("[1-9]\\d{5}")){
-					String pw = new String(passwordText.getPassword());
-					if(pw.length() >=6 && pw.length()<=16){
+				if (useridText.getText().isEmpty()){
+					return;
+				}
+				Account acc = AccountManager.accMap.get(Integer.parseInt(useridText.getText()));
+				if (acc!=null){
+					if (acc.getPassword().equals(passwordText.getPassword())){
+						JOptionPane.showMessageDialog(null, "登陆成功");
 						MainInterFace mainInterFace = new MainInterFace();
 						mainInterFace.setVisible(true);
 						LoginFrame.this.dispose();
-					}else{JOptionPane.showMessageDialog(null, "密码格式错误");}
-					
-					
-				
-				}else{JOptionPane.showMessageDialog(null, "账号格式错误");}
+					}else{
+						JOptionPane.showMessageDialog(null, "密码错误");
+					}
+				}else{
+					JOptionPane.showMessageDialog(null, "账号不存在");
+				}
 			}
 			
 		}

@@ -23,13 +23,14 @@ public class RegisterFrame extends JFrame{
 	private JLabel pwcheckLabel;
 	public RegisterFrame(){
 		this.setTitle("注册");
-		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setSize(480, 320);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 		createComps();
 		createBasic();
 	}
+
 	
 	private void createComps(){
 		Font myFont = new Font("微软雅黑",Font.PLAIN, 16);
@@ -78,9 +79,9 @@ public class RegisterFrame extends JFrame{
 					if (pw.length() >=6 && pw.length()<=16){
 						if (pwcheck.equals(pw)){
 							JOptionPane.showMessageDialog(null, "注册成功");
-							Account acc = new Account(Integer.parseInt(useridText.getText()),pw,new Person());
-							//add sth.
-							RegisterFrame.this.dispose();
+							AccountManager.accMap.put(Integer.parseInt(useridText.getText()), new Account(Integer.parseInt(useridText.getText()),pw,new Person()));
+							RegisterFrame.this.setVisible(false);
+							
 						}else{
 							JOptionPane.showMessageDialog(null, "两次密码输入不一致");
 						}
