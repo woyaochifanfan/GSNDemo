@@ -18,9 +18,9 @@ import javax.swing.JTextField;
 public class LoginFrame extends JFrame{
 	private JButton regBtn;
 	private JButton logBtn;
-	private JTextField useridText;
+	private JTextField usernameText;
 	private JPasswordField passwordText;
-	private JLabel useridLabel;
+	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JLabel logoLabel;
 	public LoginFrame(){
@@ -47,18 +47,18 @@ public class LoginFrame extends JFrame{
 		Font myFont = new Font("微软雅黑",Font.PLAIN, 16);
 		regBtn = new JButton();
 		logBtn = new JButton();
-		useridText = new JTextField();
+		usernameText = new JTextField();
 		passwordText = new JPasswordField();
-		useridLabel = new JLabel("账号:");
-		useridLabel.setFont(myFont);
+		usernameLabel = new JLabel("账号:");
+		usernameLabel.setFont(myFont);
 		passwordLabel = new JLabel("密码:");
 		passwordLabel.setFont(myFont);
 		logoLabel = new JLabel("GSN");
 		logoLabel.setFont(new Font("微软雅黑",Font.PLAIN,96));
 		logoLabel.setHorizontalAlignment(JLabel.CENTER);
 		logoLabel.setBounds(120,0,240,120);
-		useridLabel.setBounds(100, 140, 40, 20);
-		useridText.setBounds(160, 140, 220, 20);
+		usernameLabel.setBounds(100, 140, 40, 20);
+		usernameText.setBounds(160, 140, 220, 20);
 		passwordLabel.setBounds(100, 180, 40, 20);
 		passwordText.setBounds(160, 180, 220, 20);
 		
@@ -75,8 +75,8 @@ public class LoginFrame extends JFrame{
 		this.getContentPane().add(logoLabel);
 		this.getContentPane().add(passwordLabel);
 		this.getContentPane().add(passwordText);
-		this.getContentPane().add(useridLabel);
-		this.getContentPane().add(useridText);
+		this.getContentPane().add(usernameLabel);
+		this.getContentPane().add(usernameText);
 		MyListener myListener = new MyListener();
 		regBtn.addActionListener(myListener);
 		logBtn.addActionListener(myListener);
@@ -92,12 +92,14 @@ public class LoginFrame extends JFrame{
 				regFrm.setVisible(true);
 
 			}else if (e.getSource()==logBtn){
-				if (useridText.getText().isEmpty()){
+				if (usernameText.getText().isEmpty()){
 					return;
 				}
-				Account acc = AccountManager.accMap.get(Integer.parseInt(useridText.getText()));
+				Account acc = AccountManager.accMap.get(usernameText.getText());
 				if (acc!=null){
-					if (acc.getPassword().equals(passwordText.getPassword())){
+					String pwInput = new String(passwordText.getPassword());
+					String pwCheck = new String(acc.getPassword());
+					if (pwInput.equals(pwCheck)){
 						JOptionPane.showMessageDialog(null, "登陆成功");
 						MainInterFace mainInterFace = new MainInterFace();
 						mainInterFace.setVisible(true);
