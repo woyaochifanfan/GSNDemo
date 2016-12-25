@@ -112,9 +112,6 @@ public class MainInterFace extends JFrame{
 		this.getContentPane().add(btnPanel);
 		
 		String[] contant = me.getFrdList().toArray(new String[me.getFrdList().size()]);
-		
-		
-				
 		friendsList = new JComboBox<>(contant);
 		friendsList.setEditable(false);
 		friendsList.setMaximumRowCount(8);
@@ -122,31 +119,27 @@ public class MainInterFace extends JFrame{
 		friendsList.setFont(myFont);
 		this.getContentPane().add(friendsList);
 		
-	
-	   
-		    
-        	/*button.addActionListener(new ActionListener() { 
-        		 
-        		public void actionPerformed(ActionEvent e) { 
-        		setVisible(false);//隐藏窗体 
-        		
-        		} 
-        		});  
-        	but1.addActionListener(new ActionListener() { 
-        		 
-        		public void actionPerformed(ActionEvent e) { 
-        			JOptionPane.showMessageDialog(null, "您最近没有收到消息");
-        		
-        		} 
-        		});
-        	but2.addActionListener(new ActionListener() { 
-        		 
-        		public void actionPerformed(ActionEvent e) { 
+		chatBtn.addActionListener(new ActionListener(){
 
-                    PersonalMessage p = new PersonalMessage();
-        		
-        		} 
-        		});  */
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ChatFrame chatfrm = new ChatFrame();
+				chatfrm.setVisible(true);
+			}
+			
+		});
+	   
+		viewMyInfoBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				PersonalInformation myInfo = new PersonalInformation(myAccount.getUsername(),true);
+				myInfo.setVisible(true);
+			}
+			
+		});
+		    
+
         	
 
 

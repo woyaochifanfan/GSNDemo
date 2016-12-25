@@ -10,18 +10,19 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-public class PersonalMessage extends JFrame {
-	PersonalMessage(){
-		this.setTitle("个人信息展示");
+public class PersonalInformation extends JFrame {
+	private Account acc;
+	private Person prsn;
+	PersonalInformation(String username,boolean isMyself){
 		this.setSize(300, 450);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
 		this.setResizable(false);
-		this.setVisible(true);
+		acc = AccountManager.accMap.get(username);
+		prsn = acc.getPerson();
 		createBasic();
 		createzujian();
 		createHead();
-		
 		
 	}
 	private void createBasic(){
@@ -46,7 +47,7 @@ public class PersonalMessage extends JFrame {
 	}
 	private void createHead(){
 		JLabel labelHead = new JLabel();
-		labelHead.setBounds(0,0,87,80);
+		labelHead.setBounds(0,0,10,80);
 		labelHead.setIcon(new ImageIcon("3.jpg"));
 		labelHead.setBorder(BorderFactory.createLineBorder(Color.black));//设置面板边框颜色
 		this.getContentPane().add(labelHead);
