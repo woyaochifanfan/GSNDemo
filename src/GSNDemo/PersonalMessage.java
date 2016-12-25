@@ -1,4 +1,4 @@
-package GSNDemo;
+ï»¿package GSNDemo;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 
 public class PersonalMessage extends JFrame {
 	PersonalMessage(){
-		this.setTitle("¸öÈËĞÅÏ¢Õ¹Ê¾");
+		this.setTitle("ä¸ªäººä¿¡æ¯å±•ç¤º");
 		this.setSize(300, 450);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
@@ -25,20 +25,20 @@ public class PersonalMessage extends JFrame {
 		
 	}
 	private void createBasic(){
-		ImageIcon img = new ImageIcon("1.jpg");		// ÕâÊÇ±³¾°Í¼Æ¬
-		JLabel imgLabel = new JLabel(img);		    // ½«±³¾°Í¼·ÅÔÚ±êÇ©Àï¡£			
+		ImageIcon img = new ImageIcon("1.jpg");		// è¿™æ˜¯èƒŒæ™¯å›¾ç‰‡
+		JLabel imgLabel = new JLabel(img);		    // å°†èƒŒæ™¯å›¾æ”¾åœ¨æ ‡ç­¾é‡Œã€‚			
 		imgLabel.setBounds(0,0,this.getWidth(),this.getHeight());
 		this.getLayeredPane().add(imgLabel,new	Integer(Integer.MIN_VALUE));
 		JPanel cp = (JPanel)this.getContentPane();			 
 		cp.setOpaque(false); 
 	}
 	private void createzujian(){
-		JLabel PersonalSign = new JLabel("¸öĞÔÇ©Ãû");
+		JLabel PersonalSign = new JLabel("ä¸ªæ€§ç­¾å");
 		PersonalSign.setFont(new Font("",Font.BOLD,16));
 		PersonalSign.setBounds(5,150,200,80);
 		this.getContentPane().add(PersonalSign);
 		JTextArea text = new JTextArea();
-		text.append(" ĞÄÓĞ¶àºÚ£¬ÃÎÏë¾ÍÓĞ¶àÔ¶....");
+		text.append(" å¿ƒæœ‰å¤šé»‘ï¼Œæ¢¦æƒ³å°±æœ‰å¤šè¿œ....");
 		text.setBounds(80,180,200,22);
 		this.getContentPane().add(text);
 		
@@ -48,9 +48,9 @@ public class PersonalMessage extends JFrame {
 		JLabel labelHead = new JLabel();
 		labelHead.setBounds(0,0,87,80);
 		labelHead.setIcon(new ImageIcon("3.jpg"));
-		labelHead.setBorder(BorderFactory.createLineBorder(Color.black));//ÉèÖÃÃæ°å±ß¿òÑÕÉ«
+		labelHead.setBorder(BorderFactory.createLineBorder(Color.black));//è®¾ç½®é¢æ¿è¾¹æ¡†é¢œè‰²
 		this.getContentPane().add(labelHead);
-		JLabel labelName = new JLabel("ÎÒÒª³Ô·¹·¹");
+		JLabel labelName = new JLabel("æˆ‘è¦åƒé¥­é¥­");
 		labelName.setFont(new Font("",Font.BOLD,18));
 		labelName.setBounds(100,30,190,70);
 		this.getContentPane().add(labelName);

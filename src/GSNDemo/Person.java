@@ -1,12 +1,12 @@
-package GSNDemo;
+ï»¿package GSNDemo;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
 
 
 public class Person {
-	private int id;
 	private String nickname;
 	private String comment;
 	private String gender;
@@ -14,15 +14,34 @@ public class Person {
 	private ImageIcon img;
 	private int level;
 	private long xp;
+	private ArrayList<String> frdList;
+	
+	public Person(String nickname, String comment, String gender, int level,long xp) {
+		this.nickname = nickname;
+		this.comment = comment;
+		this.gender = gender;
+		this.birthday = Calendar.getInstance();
+		this.img =  new ImageIcon("DefaultHeadIcon.jpg");
+		this.level = level;
+		this.xp = xp;
+		frdList = new ArrayList<String>();
+		frdList.add("SystemManager");
+	}
 	public Person(){
-		id = 10000;
-		nickname = "Çë±à¼­êÇ³Æ";
-		comment = "Çë±à¼­ÄúµÄ¸öĞÔÇ©Ãû";
+		nickname = "è¯·ç¼–è¾‘æ˜µç§°";
+		comment = "è¯·ç¼–è¾‘æ‚¨çš„ä¸ªæ€§ç­¾å";
 		gender = "unknown";
 		birthday = Calendar.getInstance();
 		img = new ImageIcon("DefaultHeadIcon.jpg");
 		level = 0;
 		xp =0;
+		frdList = new ArrayList<String>();
+		frdList.add("SystemManager");
+		frdList.add("TestRobot1");
+		frdList.add("TestRobot2");
+		frdList.add("TestRobot3");
+		frdList.add("TestRobot4");
+		frdList.add("TestRobot5");
 	}
 	public String getNickname() {
 		return nickname;
@@ -66,6 +85,10 @@ public class Person {
 	public void setImg(ImageIcon img) {
 		this.img = img;
 	}
+	public ArrayList<String> getFrdList() {
+		return frdList;
+	}
+
 	
 
 	

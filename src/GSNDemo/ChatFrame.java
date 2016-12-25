@@ -1,4 +1,4 @@
-
+ï»¿
 package GSNDemo;
 
 import javax.swing.BorderFactory;
@@ -19,12 +19,12 @@ public class ChatFrame extends JFrame{
 		this.setBounds(0, 0, 720, 480);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
-		this.setTitle("ÁÄÌì");
+		this.setTitle("èŠå¤©");
 		//createBasic();
 		createComps();
 	}
 	private void createComps(){
-		sendBtn = new JButton("·¢ËÍ");
+		sendBtn = new JButton("å‘é€");
 		sendBtn.setBounds(620, 370,80, 80);		
 		myText = new JTextArea();
 		msgText = new JTextArea();
@@ -40,8 +40,8 @@ public class ChatFrame extends JFrame{
 		this.getContentPane().add(myText);
 	}
 	private void createBasic(){
-		ImageIcon img = new ImageIcon("1.jpg");		// ÕâÊÇ±³¾°Í¼Æ¬
-		JLabel imgLabel = new JLabel(img);		    // ½«±³¾°Í¼·ÅÔÚ±êÇ©Àï¡£			
+		ImageIcon img = new ImageIcon("1.jpg");		// è¿™æ˜¯èƒŒæ™¯å›¾ç‰‡
+		JLabel imgLabel = new JLabel(img);		    // å°†èƒŒæ™¯å›¾æ”¾åœ¨æ ‡ç­¾é‡Œã€‚			
 		imgLabel.setBounds(0,0,this.getWidth(),this.getHeight());
 		this.getLayeredPane().add(imgLabel,new	Integer(Integer.MIN_VALUE));
 		JPanel cp = (JPanel)this.getContentPane();			 

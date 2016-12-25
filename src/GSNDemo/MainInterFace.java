@@ -1,7 +1,8 @@
-package GSNDemo;
+ï»¿package GSNDemo;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,6 +21,8 @@ public class MainInterFace extends JFrame{
 	private JLabel nameLabel;
 	private JTextArea commentText;
 	private JLabel selectLabel;
+	private JLabel contactLabel;
+	private JPanel btnPanel;
 	private JButton addFriendsBtn;
 	private JButton delFriendsBtn;
 	private JButton chatBtn;
@@ -31,9 +34,9 @@ public class MainInterFace extends JFrame{
 	private JComboBox<String> friendsList; 
 	private Account myAccount;
 	private Person me;
-	private Font myFont = new Font("Î¢ÈíÑÅºÚ",Font.PLAIN, 16);
+	private Font myFont = new Font("å¾®è½¯é›…é»‘",Font.PLAIN, 16);
 	public MainInterFace(String username){
-		this.setTitle("ÓÃ»§½çÃæ");
+		this.setTitle("ç”¨æˆ·ç•Œé¢");
 		this.setResizable(false);
 		this.setLayout(null);		
 		this.setSize(320, 600);
@@ -49,9 +52,9 @@ public class MainInterFace extends JFrame{
 		
 	}
 	private void createBasic(){
-		ImageIcon img = new ImageIcon("2.jpg");	// ÕâÊÇ±³¾°Í¼Æ¬
+		ImageIcon img = new ImageIcon("2.jpg");	// è¿™æ˜¯èƒŒæ™¯å›¾ç‰‡
 		
-		JLabel imgLabel = new JLabel(img);		    // ½«±³¾°Í¼·ÅÔÚ±êÇ©Àï¡£			
+		JLabel imgLabel = new JLabel(img);		    // å°†èƒŒæ™¯å›¾æ”¾åœ¨æ ‡ç­¾é‡Œã€‚			
 		imgLabel.setBounds(0,0,this.getWidth(),this.getHeight());
 		this.getLayeredPane().add(imgLabel,new	Integer(Integer.MIN_VALUE));
 		JPanel cp = (JPanel)this.getContentPane();			 
@@ -59,31 +62,63 @@ public class MainInterFace extends JFrame{
 		
 	}
 	private void createComps(){ 
-		selectLabel = new JLabel("Ñ¡Ôñ:");
+		contactLabel = new JLabel("è”ç³»äºº:");
+		contactLabel.setFont(myFont);
+		contactLabel.setBounds(10, 120, 120, 20);
+		this.getContentPane().add(contactLabel);
+		
+		selectLabel = new JLabel("é€‰æ‹©:");
 		selectLabel.setFont(myFont);
 		selectLabel.setBounds(10, 200, 100, 20);
 		this.getContentPane().add(selectLabel);
 		
-		chatBtn = new JButton("ÁÄÌì");
+		btnPanel = new JPanel();
+		GridLayout myLayout = new GridLayout(4, 2);
+		btnPanel.setLayout(myLayout);
+		btnPanel.setBounds(10, 240, 290, 320);
+		
+		chatBtn = new JButton("èŠå¤©");
 		chatBtn.setFont(myFont);
+		btnPanel.add(chatBtn);
+		
+		groupBtn = new JButton("ç¾¤èŠ");
+		groupBtn.setFont(myFont);
+		btnPanel.add(groupBtn);
+		
+		viewFriendsInfoBtn = new JButton("æŸ¥çœ‹èµ„æ–™");
+		viewFriendsInfoBtn.setFont(myFont);
+		btnPanel.add(viewFriendsInfoBtn);
+		
+		viewMyInfoBtn = new JButton("æˆ‘çš„ä¿¡æ¯");
+		viewMyInfoBtn.setFont(myFont);
+		btnPanel.add(viewMyInfoBtn);
+		
+		addFriendsBtn = new JButton("æ·»åŠ å¥½å‹");
+		addFriendsBtn.setFont(myFont);
+		btnPanel.add(addFriendsBtn);
+		
+		delFriendsBtn = new JButton("åˆ é™¤å¥½å‹");
+		delFriendsBtn.setFont(myFont);
+		btnPanel.add(delFriendsBtn);
+		
+		msgBtn = new JButton("æ¶ˆæ¯");
+		msgBtn.setFont(myFont);
+		btnPanel.add(msgBtn);
+		
+		exitBtn = new JButton("é€€å‡º");
+		exitBtn.setFont(myFont);
+		btnPanel.add(exitBtn);
+		
+		this.getContentPane().add(btnPanel);
+		
+		String[] contant = me.getFrdList().toArray(new String[me.getFrdList().size()]);
 		
 		
-		groupBtn = new JButton("ÈºÁÄ");
-		viewFriendsInfoBtn = new JButton("²é¿´×ÊÁÏ");
-		viewMyInfoBtn = new JButton("ÎÒµÄĞÅÏ¢");
-		msgBtn = new JButton("ÏûÏ¢");
-		exitBtn = new JButton("ÍË³ö");
-		addFriendsBtn = new JButton("Ìí¼ÓºÃÓÑ");
-		delFriendsBtn = new JButton("É¾³ıºÃÓÑ");
-		 
- 
-		
-		String[] contant = {"ÁªÏµÈË£º","Ğ¡Íõ","ÕÅÈı","ÀîËÄ","ÍõÎå","Ğ¡ºì","Ğ¡Àî"};		
-	 
-		friendsList = new JComboBox<String>(contant);
+				
+		friendsList = new JComboBox<>(contant);
 		friendsList.setEditable(false);
 		friendsList.setMaximumRowCount(8);
-		friendsList.setBounds(10,150,300,30);
+		friendsList.setBounds(10,155,300,30);
 		friendsList.setFont(myFont);
 		this.getContentPane().add(friendsList);
 		
@@ -93,14 +128,14 @@ public class MainInterFace extends JFrame{
         	/*button.addActionListener(new ActionListener() { 
         		 
         		public void actionPerformed(ActionEvent e) { 
-        		setVisible(false);//Òş²Ø´°Ìå 
+        		setVisible(false);//éšè—çª—ä½“ 
         		
         		} 
         		});  
         	but1.addActionListener(new ActionListener() { 
         		 
         		public void actionPerformed(ActionEvent e) { 
-        			JOptionPane.showMessageDialog(null, "Äú×î½üÃ»ÓĞÊÕµ½ÏûÏ¢");
+        			JOptionPane.showMessageDialog(null, "æ‚¨æœ€è¿‘æ²¡æœ‰æ”¶åˆ°æ¶ˆæ¯");
         		
         		} 
         		});
@@ -120,12 +155,12 @@ public class MainInterFace extends JFrame{
 		headLabel = new JLabel();
 		headLabel.setBounds(10,10,100,100);
 		headLabel.setIcon(me.getImg());
-		headLabel.setBorder(BorderFactory.createLineBorder(Color.black));//ÉèÖÃÃæ°å±ß¿òÑÕÉ«
+		headLabel.setBorder(BorderFactory.createLineBorder(Color.black));//è®¾ç½®é¢æ¿è¾¹æ¡†é¢œè‰²
 		this.getContentPane().add(headLabel);
 		
 		nameLabel = new JLabel(me.getNickname());
 		nameLabel.setBounds(120,10,200,50);
-		nameLabel.setFont(new Font("Î¢ÈíÑÅºÚ",Font.BOLD, 32));
+		nameLabel.setFont(new Font("å¾®è½¯é›…é»‘",Font.BOLD, 32));
 		this.getContentPane().add(nameLabel);
 		
 		commentText = new JTextArea(me.getComment());
