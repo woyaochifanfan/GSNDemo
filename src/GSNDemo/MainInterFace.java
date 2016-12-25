@@ -13,21 +13,39 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class MainInterFace extends JFrame{
-	public MainInterFace(){
+	private JLabel headLabel;
+	private JLabel nameLabel;
+	private JTextArea commentText;
+	private JLabel selectLabel;
+	private JButton addFriendsBtn;
+	private JButton delFriendsBtn;
+	private JButton chatBtn;
+	private JButton groupBtn;
+	private JButton viewFriendsInfoBtn;
+	private JButton viewMyInfoBtn;
+	private JButton msgBtn;
+	private JButton exitBtn;
+	private JComboBox<String> friendsList; 
+	private Account myAccount;
+	private Person me;
+	private Font myFont = new Font("微软雅黑",Font.PLAIN, 16);
+	public MainInterFace(String username){
 		this.setTitle("用户界面");
 		this.setResizable(false);
 		this.setLayout(null);		
-		
-		this.setSize(400, 600);
+		this.setSize(320, 600);
 		this.setLocationRelativeTo(null);
 		
-		createBasic();
-		createHead();
-		createzujian();
+		myAccount = AccountManager.accMap.get(username);
+		me = myAccount.getPerson();
 		
-	
+		createBasic();
+		createPersonInfo();
+		createComps();
+		
 		
 	}
 	private void createBasic(){
@@ -40,87 +58,83 @@ public class MainInterFace extends JFrame{
 		cp.setOpaque(false);		
 		
 	}
-	private void createzujian(){ 
-		 JButton button = new JButton("退出");
-		 button.setForeground(Color.red);
-		 button.setBackground(Color.gray);
-		 button.setBounds(333,543,60,30);
-		 
-		 JButton but1 = new JButton("消息");
-		 JButton but2 = new JButton("个人信息");
-		 JButton but3 = new JButton("好友动态");
-		 
-		 but1.setBounds(10, 500, 90, 30);
-		 but2.setBounds(155, 500, 90, 30);
-		 but3.setBounds(300, 500, 90, 30);
-		 
-		 but1.setForeground(Color.blue);
-		 but2.setForeground(Color.blue);
-		 but3.setForeground(Color.blue);
-		 
+	private void createComps(){ 
+		selectLabel = new JLabel("选择:");
+		selectLabel.setFont(myFont);
+		selectLabel.setBounds(10, 200, 100, 20);
+		this.getContentPane().add(selectLabel);
 		
-		 String[] contant = {"联系人：","小王","张三","李四","王五","小红","小李"};		
+		chatBtn = new JButton("聊天");
+		chatBtn.setFont(myFont);
+		
+		
+		groupBtn = new JButton("群聊");
+		viewFriendsInfoBtn = new JButton("查看资料");
+		viewMyInfoBtn = new JButton("我的信息");
+		msgBtn = new JButton("消息");
+		exitBtn = new JButton("退出");
+		addFriendsBtn = new JButton("添加好友");
+		delFriendsBtn = new JButton("删除好友");
 		 
-			JComboBox comboBox = new JComboBox(contant);
-			comboBox.setEditable(true);
-			comboBox.setMaximumRowCount(5);
-			
-				
-			comboBox.setBounds(30,150,180,30);
-			this.getContentPane().add(comboBox);
-			this.getContentPane().add(button);
-			this.getContentPane().add(but1);
-			this.getContentPane().add(but2);
-			this.getContentPane().add(but3);
-	       
-			    
-	        	button.addActionListener(new ActionListener() { 
-	        		 
-	        		public void actionPerformed(ActionEvent e) { 
-	        		setVisible(false);//隐藏窗体 
-	        		
-	        		} 
-	        		});  
-	        	but1.addActionListener(new ActionListener() { 
-	        		 
-	        		public void actionPerformed(ActionEvent e) { 
-	        			JOptionPane.showMessageDialog(null, "您最近没有收到消息");
-	        		
-	        		} 
-	        		});
-	        	but2.addActionListener(new ActionListener() { 
-	        		 
-	        		public void actionPerformed(ActionEvent e) { 
+ 
+		
+		String[] contant = {"联系人：","小王","张三","李四","王五","小红","小李"};		
+	 
+		friendsList = new JComboBox<String>(contant);
+		friendsList.setEditable(false);
+		friendsList.setMaximumRowCount(8);
+		friendsList.setBounds(10,150,300,30);
+		friendsList.setFont(myFont);
+		this.getContentPane().add(friendsList);
+		
+	
+	   
+		    
+        	/*button.addActionListener(new ActionListener() { 
+        		 
+        		public void actionPerformed(ActionEvent e) { 
+        		setVisible(false);//隐藏窗体 
+        		
+        		} 
+        		});  
+        	but1.addActionListener(new ActionListener() { 
+        		 
+        		public void actionPerformed(ActionEvent e) { 
+        			JOptionPane.showMessageDialog(null, "您最近没有收到消息");
+        		
+        		} 
+        		});
+        	but2.addActionListener(new ActionListener() { 
+        		 
+        		public void actionPerformed(ActionEvent e) { 
 
-                        PersonalMessage p = new PersonalMessage();
-	        		
-	        		} 
-	        		});  
-	        	but3.addActionListener(new ActionListener() { 
-	        		 
-	        		public void actionPerformed(ActionEvent e) { 
-	        			JOptionPane.showMessageDialog(null, "您的好友没有动态");
-	        		
-	        		} 
-	        		});  
+                    PersonalMessage p = new PersonalMessage();
+        		
+        		} 
+        		});  */
+        	
 
 
 	}
-	private void createHead(){
-		JLabel labelHead = new JLabel();
-		labelHead.setBounds(10,10,87,80);
-		labelHead.setIcon(new ImageIcon("3.jpg"));
-		labelHead.setBorder(BorderFactory.createLineBorder(Color.black));//设置面板边框颜色
-
-
-		this.getContentPane().add(labelHead);
+	private void createPersonInfo(){
+		headLabel = new JLabel();
+		headLabel.setBounds(10,10,100,100);
+		headLabel.setIcon(me.getImg());
+		headLabel.setBorder(BorderFactory.createLineBorder(Color.black));//设置面板边框颜色
+		this.getContentPane().add(headLabel);
 		
+		nameLabel = new JLabel(me.getNickname());
+		nameLabel.setBounds(120,10,200,50);
+		nameLabel.setFont(new Font("微软雅黑",Font.BOLD, 32));
+		this.getContentPane().add(nameLabel);
 		
-		JLabel labelName = new JLabel("我要吃饭饭");
-		labelName.setFont(new Font("",Font.BOLD,20));
-		labelName.setBounds(120,30,200,80);
-		this.getContentPane().add(labelName);
-		
+		commentText = new JTextArea(me.getComment());
+		commentText.setFont(myFont);
+		commentText.setBounds(120,60,180,40);
+		commentText.setEditable(false);
+		commentText.setOpaque(false);
+		commentText.setLineWrap(true);
+		this.getContentPane().add(commentText);
 		
 	}
 	

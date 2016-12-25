@@ -1,5 +1,6 @@
 ﻿package GSNDemo;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,6 +58,7 @@ public class RegisterFrame extends JFrame{
 		tipsLabel.setBounds(0, 270, 480, 20);
 		tipsLabel.setText("*限使用英文大小写和数字 用户名:4~16位,限字母开头 密码:6-16位");
 		tipsLabel.setFont(myFont);
+		tipsLabel.setForeground(Color.BLUE);
 		this.setLayout(null);
 		this.getContentPane().add(regBtn);
 		this.getContentPane().add(usernameText);
@@ -76,13 +78,15 @@ public class RegisterFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if (e.getSource()==regBtn){
-				if (usernameText.getText().matches("[a-zA-Z][a-zA-Z0-9]{3,15}")){
+				String username = usernameText.getText();
+				if (username.matches("[a-zA-Z][a-zA-Z0-9]{3,15}")){
 					String pw = new String(passwordText.getPassword());
 					String pwcheck = new String(pwcheckText.getPassword());
 					if (pw.matches("[a-zA-Z0-9]{6,16}")){
 						if (pwcheck.equals(pw)){
 							JOptionPane.showMessageDialog(null, "注册成功");
-							AccountManager.accMap.put(usernameText.getText(), new Account(usernameText.getText(),pw,new Person()));
+							AccountManager.accMap.put(username, new Account(username,pw,new Person()));
+							LoginFrame.setUsername(username);
 							RegisterFrame.this.setVisible(false);
 							
 						}else{

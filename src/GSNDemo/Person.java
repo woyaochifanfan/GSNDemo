@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 
 public class Person {
+	private int id;
 	private String nickname;
 	private String comment;
 	private String gender;
@@ -13,23 +14,13 @@ public class Person {
 	private ImageIcon img;
 	private int level;
 	private long xp;
-	public Person(String nickname, String comment, String gender, Calendar birthday, ImageIcon img, int level,
-			long xp) {
-		super();
-		this.nickname = nickname;
-		this.comment = comment;
-		this.gender = gender;
-		this.birthday = birthday;
-		this.img = img;
-		this.level = level;
-		this.xp = xp;
-	}
 	public Person(){
-		nickname = "unknown";
-		comment = "unknown";
+		id = 10000;
+		nickname = "Çë±à¼­êÇ³Æ";
+		comment = "Çë±à¼­ÄúµÄ¸öÐÔÇ©Ãû";
 		gender = "unknown";
 		birthday = Calendar.getInstance();
-		img = new ImageIcon();
+		img = new ImageIcon("DefaultHeadIcon.jpg");
 		level = 0;
 		xp =0;
 	}

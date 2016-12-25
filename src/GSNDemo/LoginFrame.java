@@ -18,11 +18,16 @@ import javax.swing.JTextField;
 public class LoginFrame extends JFrame{
 	private JButton regBtn;
 	private JButton logBtn;
-	private JTextField usernameText;
+	private static JTextField usernameText;
 	private JPasswordField passwordText;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JLabel logoLabel;
+	
+	public static void setUsername(String username) {
+		usernameText.setText(username);
+	}
+	
 	public LoginFrame(){
 		this.setTitle("GSN Beta1.0");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -101,7 +106,7 @@ public class LoginFrame extends JFrame{
 					String pwCheck = new String(acc.getPassword());
 					if (pwInput.equals(pwCheck)){
 						JOptionPane.showMessageDialog(null, "登陆成功");
-						MainInterFace mainInterFace = new MainInterFace();
+						MainInterFace mainInterFace = new MainInterFace(acc.getUsername());
 						mainInterFace.setVisible(true);
 						LoginFrame.this.dispose();
 					}else{
