@@ -38,17 +38,22 @@ public class GSNServer {
 		}	
 	}
 	
-	public static void pushData(){
+	public static void pushData(String word){
 		try {
 			Socket socket = new Socket(NetHandler.ip, NetHandler.port);
 			ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-			oos.writeObject(AccountManager.accMap);
+			ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+			oos.writeObject(word);
 			oos.flush();
+			String str = (String)ois.readObject();
 			oos.close();
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -16,7 +16,7 @@ public class Test {
 		//ChatFrame b = new ChatFrame();
 		//b.setVisible(true);
 	
-	}
+	} 
 	
 
 }

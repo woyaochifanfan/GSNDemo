@@ -3,6 +3,14 @@ package GSNDemo;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -25,6 +33,9 @@ public class ChatFrame extends JFrame{
 	private Person me;
 	private Person you;
 	private Font myFont = new Font("微软雅黑",Font.PLAIN, 16);
+	private Socket socket;
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois; 
 	public ChatFrame(String user_me,String user_you){
 		this.setDefaultCloseOperation(HIDE_ON_CLOSE);
 		this.setBounds(0, 0, 720, 480);
@@ -39,6 +50,11 @@ public class ChatFrame extends JFrame{
 		
 		createComps();
 		createPersonInfo();
+		/*if (user_me.equals("SystemManager")){
+			serverConnect();
+		}else{
+			connect();
+		}*/
 	}
 	private void createComps(){
 		sendBtn = new JButton("发送");
@@ -57,6 +73,24 @@ public class ChatFrame extends JFrame{
 		this.getContentPane().add(sendBtn);
 		this.getContentPane().add(msgText);
 		this.getContentPane().add(myText);
+		sendBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String txt = msgText.getText();
+				if (txt!=null){
+					try {
+						oos.writeObject(txt);
+						oos.flush();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}
+			
+		});
 	}
 	private void createBasic(){
 		ImageIcon img = new ImageIcon("1.jpg");		// 这是背景图片
@@ -87,6 +121,45 @@ public class ChatFrame extends JFrame{
 		commentText.setOpaque(false);
 		commentText.setLineWrap(true);
 		this.getContentPane().add(commentText);
+		
+	}
+	private void connect(){
+		try {
+			socket = new Socket(NetHandler.ip, NetHandler.port);
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			String str;
+			str=(String)ois.readObject();
+				msgText.append(str+"\n");
+			
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private void serverConnect(){
+		ServerSocket server;
+		try {
+			server = new ServerSocket(NetHandler.port);
+			socket = server.accept();
+			oos = new ObjectOutputStream(socket.getOutputStream());
+			ois = new ObjectInputStream(socket.getInputStream());
+			String str;
+			str=(String)ois.readObject();
+				msgText.append(str+"\n");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
