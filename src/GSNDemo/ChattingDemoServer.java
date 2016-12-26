@@ -1,4 +1,4 @@
-package GSNDemo;
+ï»¿package GSNDemo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,17 +22,17 @@ public class ChattingDemoServer {
 			try{
 				client = serverSocket.accept();
 			}catch(Exception e){
-				System.out.println("½ÓÊÕÇëÇóÊ§°Ü£¡");
+				System.out.println("æ¥æ”¶è¯·æ±‚å¤±è´¥ï¼");
 				System.exit(-1);
 			}
-			System.out.println("Client["+ChattingDemoServer.num+"]µÇÂ¼¡­¡­¡­¡­");
+			System.out.println("Client["+ChattingDemoServer.num+"]ç™»å½•â€¦â€¦â€¦â€¦");
 			ServerThread st = new ServerThread(client);
 			Thread t = new Thread(st);
 			t.start();
 			try{
 				serverSocket.close();
 			}catch(IOException e){
-				System.out.println("¹Ø±ÕÊ§°Ü£¡");
+				System.out.println("å…³é—­å¤±è´¥ï¼");
 			}
 			num++;
 		}
@@ -53,14 +53,14 @@ class ServerThread implements Runnable{
 			while(inputString!=null && !inputString.trim().equals("quit")){
 				os.println(inputString);
 				os.flush();
-				System.out.println("Server·¢ËÍÏûÏ¢Îª£º"+inputString);
-				System.out.println("Client·¢ËÍµÄÏûÏ¢Îª£º"+is.readLine());
+				System.out.println("Serverå‘é€æ¶ˆæ¯ä¸ºï¼š"+inputString);
+				System.out.println("Clientå‘é€çš„æ¶ˆæ¯ä¸ºï¼š"+is.readLine());
 				inputString = sin.readLine();
 			}
 			os.close();
 			is.close();
 			client.close();
-			System.out.println("ÁÄÌì½áÊø");
+			System.out.println("èŠå¤©ç»“æŸ");
 		}catch(IOException e){
 			e.printStackTrace();
 		}

@@ -1,4 +1,4 @@
-package GSNDemo;
+ï»¿package GSNDemo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class Client {
 		try{
 			String inputString;
 			server = new Socket("127.0.0.1",4445);
-			System.out.println("ÇëÊäÈëĞÅÏ¢");
+			System.out.println("è¯·è¾“å…¥ä¿¡æ¯");
 			BufferedReader sin = new BufferedReader(new InputStreamReader(System.in));
 			PrintWriter os = new PrintWriter(server.getOutputStream());
 			BufferedReader is = new BufferedReader(new InputStreamReader(server.getInputStream()));
@@ -22,15 +22,15 @@ public class Client {
 			while(inputString!=null&&inputString.trim().equals("quit")){
 				os.println(inputString);
 				os.flush();
-				System.out.println("Client·¢ËÍµÄÏûÏ¢Îª£º"+inputString);
-			 	System.out.println("Server·¢ËÍµÄÏûÏ¢Îª£º"+is.readLine());
+				System.out.println("Clientå‘é€çš„æ¶ˆæ¯ä¸ºï¼š"+inputString);
+			 	System.out.println("Serverå‘é€çš„æ¶ˆæ¯ä¸ºï¼š"+is.readLine());
 				inputString = sin.readLine();
 			 	
 			}
 			os.close();
 			is.close();
 			server.close();
-			System.out.println("ÁÄÌì½áÊø£¡");
+			System.out.println("èŠå¤©ç»“æŸï¼");
 			}catch(UnknownHostException e){
 				e.printStackTrace();
 		}catch(IOException e){

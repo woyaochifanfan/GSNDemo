@@ -120,7 +120,7 @@ public class MainInterFace extends JFrame{
 		delFriendsBtn.setFont(myFont);
 		btnPanel.add(delFriendsBtn);
 		
-		msgBtn = new JButton("消息");
+		msgBtn = new JButton("消息盒子");
 		msgBtn.setFont(myFont);
 		btnPanel.add(msgBtn);
 		
@@ -142,8 +142,22 @@ public class MainInterFace extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ChatFrame chatfrm = new ChatFrame();
-				chatfrm.setVisible(true);
+				String fd = (String)friendsList.getSelectedItem();
+				if (fd!=null){
+					ChatFrame chatfrm = new ChatFrame(myAccount.getUsername(),fd);
+					chatfrm.setVisible(true);
+				}
+
+			}
+			
+		});
+		
+		groupBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
 			}
 			
 		});
@@ -205,6 +219,25 @@ public class MainInterFace extends JFrame{
 			
 		});
 		
+		msgBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		optionBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 
 
