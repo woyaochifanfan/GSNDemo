@@ -30,7 +30,7 @@ public class MainInterFace extends JFrame{
 	private JButton viewFriendsInfoBtn;
 	private JButton viewMyInfoBtn;
 	private JButton msgBtn;
-	private JButton exitBtn;
+	private JButton optionBtn;
 	private JComboBox<String> friendsList; 
 	private Account myAccount;
 	private Person me;
@@ -105,9 +105,9 @@ public class MainInterFace extends JFrame{
 		msgBtn.setFont(myFont);
 		btnPanel.add(msgBtn);
 		
-		exitBtn = new JButton("退出");
-		exitBtn.setFont(myFont);
-		btnPanel.add(exitBtn);
+		optionBtn = new JButton("设置");
+		optionBtn.setFont(myFont);
+		btnPanel.add(optionBtn);
 		
 		this.getContentPane().add(btnPanel);
 		
@@ -139,8 +139,42 @@ public class MainInterFace extends JFrame{
 			
 		});
 		    
+		viewFriendsInfoBtn.addActionListener(new ActionListener(){
 
-        	
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String fd = (String)friendsList.getSelectedItem();
+				if (fd!=null){
+					PersonalInformation frdsInfo = new PersonalInformation(fd,false);
+					frdsInfo.setVisible(true);
+				}
+
+				
+			}
+			
+		});
+		
+		addFriendsBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+        
+		delFriendsBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		
 
 
 	}

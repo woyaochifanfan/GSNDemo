@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 
 public class Person {
+	public static String[] types = {"头像","昵称","个性签名","性别","生日"};
 	private String nickname;
 	private String comment;
 	private String gender;
