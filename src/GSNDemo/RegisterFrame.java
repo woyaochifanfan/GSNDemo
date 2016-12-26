@@ -4,6 +4,13 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.HashMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -84,8 +91,14 @@ public class RegisterFrame extends JFrame{
 					String pwcheck = new String(pwcheckText.getPassword());
 					if (pw.matches("[a-zA-Z0-9]{6,16}")){
 						if (pwcheck.equals(pw)){
-							JOptionPane.showMessageDialog(null, "注册成功");
+							
+							//GSNServer.recvData();
+							
 							AccountManager.accMap.put(username, new Account(username,pw,new Person()));
+							
+							//GSNServer.pushData();
+							JOptionPane.showMessageDialog(null, "注册成功");
+							
 							LoginFrame.setUsername(username);
 							RegisterFrame.this.setVisible(false);
 							
@@ -111,4 +124,6 @@ public class RegisterFrame extends JFrame{
 		JPanel cp = (JPanel)this.getContentPane();			 
 		cp.setOpaque(false); 		
 	}
+	
+
 }
