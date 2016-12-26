@@ -6,6 +6,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -41,7 +44,6 @@ public class MainInterFace extends JFrame{
 		this.setLayout(null);		
 		this.setSize(320, 600);
 		this.setLocationRelativeTo(null);
-		
 		myAccount = AccountManager.accMap.get(username);
 		me = myAccount.getPerson();
 		
@@ -49,6 +51,23 @@ public class MainInterFace extends JFrame{
 		createPersonInfo();
 		createComps();
 		
+		this.addWindowFocusListener(new WindowFocusListener(){
+
+			@Override
+			public void windowGainedFocus(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				refresh();
+			}
+
+			@Override
+			public void windowLostFocus(WindowEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+
+	
 		
 	}
 	private void createBasic(){
@@ -111,8 +130,8 @@ public class MainInterFace extends JFrame{
 		
 		this.getContentPane().add(btnPanel);
 		
-		String[] contant = me.getFrdList().toArray(new String[me.getFrdList().size()]);
-		friendsList = new JComboBox<>(contant);
+		String[] content = me.getFrdList().toArray(new String[me.getFrdList().size()]);
+		friendsList = new JComboBox<>(content);
 		friendsList.setEditable(false);
 		friendsList.setMaximumRowCount(8);
 		friendsList.setBounds(10,155,300,30);
@@ -158,8 +177,14 @@ public class MainInterFace extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				String s = (String) JOptionPane.showInputDialog(null,"请输入对方用户名：\n","输入",JOptionPane.PLAIN_MESSAGE,null,null,"");
+				if(s!=null){
+					if (AccountManager.accMap.get(s)!=null){
+						JOptionPane.showMessageDialog(null, "添加成功");
+						me.getFrdList().add(s);
+						friendsList.addItem(s);
+					}
+				}
 			}
 			
 		});
@@ -168,8 +193,14 @@ public class MainInterFace extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				String sel = (String)friendsList.getSelectedItem();
+				if (sel!=null){
+					int n = JOptionPane.showConfirmDialog(null, "你确定要删除好友"+sel+"吗", "确认",JOptionPane.YES_NO_OPTION);
+					if (n == JOptionPane.YES_OPTION){
+						me.getFrdList().remove(sel);
+						friendsList.removeItem(sel);
+					}
+				}
 			}
 			
 		});
@@ -200,6 +231,11 @@ public class MainInterFace extends JFrame{
 		
 	}
 	
+	public void refresh(){
+		headLabel.setIcon(me.getImg());
+		nameLabel.setText(me.getNickname());
+		commentText.setText(me.getComment());
+	}
 	
 
 }

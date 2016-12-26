@@ -1,7 +1,7 @@
 ﻿package GSNDemo;
 
-import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.TreeSet;
 
 import javax.swing.ImageIcon;
 
@@ -15,7 +15,7 @@ public class Person {
 	private ImageIcon img;
 	private int level;
 	private long xp;
-	private ArrayList<String> frdList;
+	private TreeSet<String> frdList;
 	
 	public Person(String nickname, String comment, String gender, int level,long xp) {
 		this.nickname = nickname;
@@ -25,7 +25,7 @@ public class Person {
 		this.img =  new ImageIcon("DefaultHeadIcon.jpg");
 		this.level = level;
 		this.xp = xp;
-		frdList = new ArrayList<String>();
+		frdList = new TreeSet<String>();
 		frdList.add("SystemManager");
 	}
 	public Person(){
@@ -36,7 +36,7 @@ public class Person {
 		img = new ImageIcon("DefaultHeadIcon.jpg");
 		level = 0;
 		xp =0;
-		frdList = new ArrayList<String>();
+		frdList = new TreeSet<String>();
 		frdList.add("SystemManager");
 		frdList.add("TestRobot1");
 		frdList.add("TestRobot2");
@@ -86,7 +86,7 @@ public class Person {
 	public void setImg(ImageIcon img) {
 		this.img = img;
 	}
-	public ArrayList<String> getFrdList() {
+	public TreeSet<String> getFrdList() {
 		return frdList;
 	}
 
