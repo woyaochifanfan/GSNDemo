@@ -1,5 +1,6 @@
-package GSNDemo;
-
+package gsn.test;
+import gsn.data.*;
+import gsn.frames.*;
 public class Test {
 
 	public static void main(String[] args) {

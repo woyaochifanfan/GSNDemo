@@ -1,4 +1,4 @@
-package GSNDemo;
+package gsn.data;
 
 public class NetHandler {
 	public static String ip = "127.0.0.1";

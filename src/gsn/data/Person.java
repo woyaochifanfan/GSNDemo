@@ -1,4 +1,4 @@
-﻿package GSNDemo;
+﻿package gsn.data;
 
 import java.util.Calendar;
 import java.util.TreeSet;

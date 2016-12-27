@@ -1,5 +1,5 @@
-﻿package GSNDemo;
-
+﻿package gsn.frames;
+import gsn.data.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
