@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Calendar;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -50,11 +51,14 @@ public class ChatFrame extends JFrame{
 		
 		createComps();
 		createPersonInfo();
-		/*if (user_me.equals("SystemManager")){
-			serverConnect();
+		
+		if (user_me.equals("SystemManager")){
+			ServerThread st = new ServerThread();
+			st.start();
 		}else{
-			connect();
-		}*/
+			ClientThread ct = new ClientThread();
+			ct.start();
+		}
 	}
 	private void createComps(){
 		sendBtn = new JButton("发送");
@@ -62,6 +66,8 @@ public class ChatFrame extends JFrame{
 		sendBtn.setFont(myFont);
 		myText = new JTextArea();
 		msgText = new JTextArea();
+		myText.setFont(myFont);
+		msgText.setFont(myFont);
 		msgText.setBounds(0,0,580,360);
 		myText.setBounds(0, 368, 580, 80);
 		myText.setAutoscrolls(true);
@@ -77,17 +83,24 @@ public class ChatFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String txt = msgText.getText();
+				String txt = myText.getText();
 				if (txt!=null){
 					try {
 						oos.writeObject(txt);
 						oos.flush();
+						//
+						Calendar c = Calendar.getInstance();
+						msgText.append(me.getNickname()+"  "+c.getTime()+"\n");
+						msgText.append(txt+"\n");
+						myText.setText("");
+						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
 				}
+			
 			}
 			
 		});
@@ -129,8 +142,17 @@ public class ChatFrame extends JFrame{
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			String str;
-			str=(String)ois.readObject();
+			while (true){
+				str=(String)ois.readObject();
+				if (str=="quit"){
+					break;
+				}
+				Calendar c = Calendar.getInstance();
+				msgText.append(you.getNickname()+"  "+c.getTime()+"\n");
 				msgText.append(str+"\n");
+			}
+			ois.close();
+				
 			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
@@ -151,16 +173,33 @@ public class ChatFrame extends JFrame{
 			oos = new ObjectOutputStream(socket.getOutputStream());
 			ois = new ObjectInputStream(socket.getInputStream());
 			String str;
-			str=(String)ois.readObject();
+			while (true){
+				str=(String)ois.readObject();
+				if (str=="quit"){
+					break;
+				}
+				Calendar c = Calendar.getInstance();
+				msgText.append(you.getNickname()+"  "+c.getTime()+"\n");
 				msgText.append(str+"\n");
+			}
+				
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	
+	}
+	private class ServerThread extends Thread{
+		public void run(){
+			serverConnect();
 		}
-		
+	}
+	private class ClientThread extends Thread{
+		public void run(){
+			connect();
+		}
 	}
 	
 }

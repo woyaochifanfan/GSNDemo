@@ -62,7 +62,7 @@ public class RegisterFrame extends JFrame{
 		pwcheckLabel.setBounds(120, 160, 240, 20);
 		pwcheckLabel.setFont(myFont);
 		pwcheckText.setBounds(120, 180, 240, 20);
-		tipsLabel.setBounds(0, 270, 480, 20);
+		tipsLabel.setBounds(0, 260, 480, 20);
 		tipsLabel.setText("*限使用英文大小写和数字 用户名:4~16位,限字母开头 密码:6-16位");
 		tipsLabel.setFont(myFont);
 		tipsLabel.setForeground(Color.BLUE);

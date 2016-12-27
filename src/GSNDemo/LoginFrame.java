@@ -105,7 +105,7 @@ public class LoginFrame extends JFrame{
 					String pwInput = new String(passwordText.getPassword());
 					String pwCheck = new String(acc.getPassword());
 					if (pwInput.equals(pwCheck)){
-						JOptionPane.showMessageDialog(null, "登陆成功");
+						JOptionPane.showMessageDialog(null, "登录成功");
 						MainInterFace mainInterFace = new MainInterFace(acc.getUsername());
 						mainInterFace.setVisible(true);
 						LoginFrame.this.dispose();

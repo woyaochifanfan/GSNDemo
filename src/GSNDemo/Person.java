@@ -27,6 +27,11 @@ public class Person {
 		this.xp = xp;
 		frdList = new TreeSet<String>();
 		frdList.add("SystemManager");
+		frdList.add("TestRobot1");
+		frdList.add("TestRobot2");
+		frdList.add("TestRobot3");
+		frdList.add("TestRobot4");
+		frdList.add("TestRobot5");
 	}
 	public Person(){
 		nickname = "请编辑昵称";
