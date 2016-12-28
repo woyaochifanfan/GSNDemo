@@ -14,8 +14,6 @@ public class Test {
 		AccountManager.accMap.put("TestRobot4",new Account("TestRobot4","111111",new Person("机器人4","我是一个测试机器人","不详",100,0)));
 		AccountManager.accMap.put("TestRobot5",new Account("TestRobot5","111111",new Person("机器人5","我是一个测试机器人","不详",100,0)));
 		
-		//ChatFrame b = new ChatFrame();
-		//b.setVisible(true);
 	
 	} 
 	

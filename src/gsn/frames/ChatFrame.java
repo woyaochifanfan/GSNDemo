@@ -20,7 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
 
 public class ChatFrame extends JFrame{
 	private JButton sendBtn;
@@ -105,16 +105,7 @@ public class ChatFrame extends JFrame{
 			
 		});
 	}
-	private void createBasic(){
-		ImageIcon img = new ImageIcon("1.jpg");		// 这是背景图片
-		JLabel imgLabel = new JLabel(img);		    // 将背景图放在标签里。			
-		imgLabel.setBounds(0,0,this.getWidth(),this.getHeight());
-		this.getLayeredPane().add(imgLabel,new	Integer(Integer.MIN_VALUE));
-		JPanel cp = (JPanel)this.getContentPane();			 
-		cp.setOpaque(false); 
-		
-		
-	}
+
 	private void createPersonInfo(){
 		headLabel = new JLabel();
 		headLabel.setBounds(600,10,100,100);

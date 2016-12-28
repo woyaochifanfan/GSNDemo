@@ -1,17 +1,10 @@
 ﻿package gsn.frames;
+
 import gsn.data.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.HashMap;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -62,7 +55,7 @@ public class RegisterFrame extends JFrame{
 		pwcheckLabel.setBounds(120, 160, 240, 20);
 		pwcheckLabel.setFont(myFont);
 		pwcheckText.setBounds(120, 180, 240, 20);
-		tipsLabel.setBounds(0, 260, 480, 20);
+		tipsLabel.setBounds(0, 270, 480, 20);
 		tipsLabel.setText("*限使用英文大小写和数字 用户名:4~16位,限字母开头 密码:6-16位");
 		tipsLabel.setFont(myFont);
 		tipsLabel.setForeground(Color.BLUE);
@@ -81,7 +74,6 @@ public class RegisterFrame extends JFrame{
 	
 	private class MyListener implements ActionListener{
 
-		
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if (e.getSource()==regBtn){
@@ -91,17 +83,10 @@ public class RegisterFrame extends JFrame{
 					String pwcheck = new String(pwcheckText.getPassword());
 					if (pw.matches("[a-zA-Z0-9]{6,16}")){
 						if (pwcheck.equals(pw)){
-							
-							//GSNServer.recvData();
-							
 							AccountManager.accMap.put(username, new Account(username,pw,new Person()));
-							
-							//GSNServer.pushData();
 							JOptionPane.showMessageDialog(null, "注册成功");
-							
 							LoginFrame.setUsername(username);
 							RegisterFrame.this.setVisible(false);
-							
 						}else{
 							JOptionPane.showMessageDialog(null, "两次密码输入不一致");
 						}
@@ -112,10 +97,10 @@ public class RegisterFrame extends JFrame{
 					JOptionPane.showMessageDialog(null, "账号格式错误");
 				}
 			}
-
 		}
 		
 	}
+	
 	private void createBasic(){
 		ImageIcon img = new ImageIcon("1.jpg");		// 这是背景图片
 		JLabel imgLabel = new JLabel(img);		    // 将背景图放在标签里。			
@@ -124,6 +109,5 @@ public class RegisterFrame extends JFrame{
 		JPanel cp = (JPanel)this.getContentPane();			 
 		cp.setOpaque(false); 		
 	}
-	
 
 }

@@ -1,7 +1,6 @@
 ﻿
 package gsn.frames;
 import gsn.data.*;
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
