@@ -258,7 +258,7 @@ public class MainInterFace extends JFrame{
 	}
 	private void createPersonInfo(){
 		headLabel = new JLabel();
-		headLabel.setBounds(10,10,100,100);
+		headLabel.setBounds(10,10,84,84);
 		headLabel.setIcon(me.getImg());
 		headLabel.setBorder(BorderFactory.createLineBorder(Color.black));//设置面板边框颜色
 		this.getContentPane().add(headLabel);

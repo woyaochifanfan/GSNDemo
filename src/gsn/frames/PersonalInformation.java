@@ -54,7 +54,7 @@ public class PersonalInformation extends JFrame {
 
 	private void createComps(){
 		headLabel = new JLabel();
-		headLabel.setBounds(10,10,100,100);
+		headLabel.setBounds(10,10,84,84);
 		headLabel.setIcon(prsn.getImg());
 		headLabel.setBorder(BorderFactory.createLineBorder(Color.black));//设置面板边框颜色
 		this.getContentPane().add(headLabel);
@@ -110,7 +110,13 @@ public class PersonalInformation extends JFrame {
 				String[] res = new String[Person.types.length];
 				String s = (String) JOptionPane.showInputDialog(null,"请选择需编辑的内容:\n", "选择", JOptionPane.PLAIN_MESSAGE, null, Person.types, null);  
 				if (s.equals(Person.types[0])){
-					//
+					HeadSelect headSelect = new HeadSelect();
+					headSelect.setVisible(true);
+
+					ImageIcon img1 = new ImageIcon("3.jpg");
+					prsn.setImg(img1);
+					
+					
 				}else if (s.equals(Person.types[1])){
 					res[1] = (String) JOptionPane.showInputDialog(null,"请输入您的昵称：\n","输入",JOptionPane.PLAIN_MESSAGE,null,null,"");  
 					if (res[1]!=null){
