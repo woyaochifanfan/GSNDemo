@@ -1,11 +1,13 @@
 ﻿package gsn.frames;
-import gsn.data.*;
+import gsn.data.Account;
+import gsn.data.AccountManager;
+import gsn.data.Person;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
@@ -151,16 +153,28 @@ public class MainInterFace extends JFrame{
 			}
 			
 		});
+		msgBtn.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+				JOptionPane.showMessageDialog(null, "您没有收到消息！");
+			}
+			
+		});
+		
 		
 		groupBtn.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				JOptionPane.showMessageDialog(null, "暂未开通群聊功能！");
 			}
 			
 		});
+		
 	   
 		viewMyInfoBtn.addActionListener(new ActionListener(){
 
