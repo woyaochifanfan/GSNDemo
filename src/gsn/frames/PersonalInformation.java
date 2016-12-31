@@ -27,6 +27,7 @@ public class PersonalInformation extends JFrame {
 	private JLabel headLabel;
 	private JLabel levelLabel;
 	private JLabel xpLabel;
+	private int num;
 	private Font myFont = new Font("微软雅黑",Font.PLAIN, 16);
 	PersonalInformation(String username,boolean isMyself){
 		this.setSize(320, 450);
@@ -110,11 +111,38 @@ public class PersonalInformation extends JFrame {
 				String[] res = new String[Person.types.length];
 				String s = (String) JOptionPane.showInputDialog(null,"请选择需编辑的内容:\n", "选择", JOptionPane.PLAIN_MESSAGE, null, Person.types, null);  
 				if (s.equals(Person.types[0])){
-					HeadSelect headSelect = new HeadSelect();
+					final HeadSelect headSelect = new HeadSelect();
 					headSelect.setVisible(true);
+					headSelect.headbut1.addActionListener(new ActionListener(){
 
-					ImageIcon img1 = new ImageIcon("3.jpg");
-					prsn.setImg(img1);
+						@Override
+						public void actionPerformed(ActionEvent e) {
+							// TODO Auto-generated method stub				
+							ImageIcon img1 = new ImageIcon("3.jpg");								
+								prsn.setImg(img1);	
+								headSelect.dispose();
+							
+						}
+					
+						
+					});	
+					headSelect.headbut2.addActionListener(new ActionListener(){
+
+						
+						public void actionPerformed(ActionEvent e) {
+							// TODO Auto-generated method stub				
+							ImageIcon img2 = new ImageIcon("5.jpg");								
+								prsn.setImg(img2);
+								headSelect.dispose();
+							
+						}
+					
+						
+					});			
+				
+					
+
+					
 					
 					
 				}else if (s.equals(Person.types[1])){
